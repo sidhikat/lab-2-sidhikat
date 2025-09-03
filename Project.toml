@@ -1,0 +1,13 @@
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+GeoMakie = "db073c08-6b98-4ee5-b6a4-5efafb3259c6"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+TidierData = "fe2206b3-d496-4ee9-a338-6a095c4ece80"
+TidierFiles = "8ae5e7a9-bdd3-4c93-9cc3-9df4d5d947db"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"

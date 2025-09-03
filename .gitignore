@@ -1,0 +1,7 @@
+*_files/
+*.html
+*.pdf
+.cache
+.jupyter_cache
+Manifest.toml
+*.txt
