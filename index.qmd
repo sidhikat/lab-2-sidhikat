@@ -141,7 +141,7 @@ using Makie.Unitful     # <5>
 # Configure plotting backend - CairoMakie for high-quality static plots
 CairoMakie.activate!(type = "svg")  # <6>
 # If you want interactive plots, uncomment the line below instead:
-# GLMakie.activate!()  # <7>
+GLMakie.activate!()  # <7>
 
 # Configure Unitful display preferences to use inches
 rainfall_conversion = Makie.UnitfulConversion(u"inch")  # <8>
@@ -351,9 +351,9 @@ plot_stations()
 Let's say we want to study rainfall at a particular point. We'll use Rice University in Houston as our example:
 
 ```{julia}
-target_location = "Rice University"  # <1>
-target_lon = -95.404970              # <2>
-target_lat = 29.718952               # <3>
+target_location = "San Antonio"  # <1>  
+target_lon =  -98.4839        # <2>
+target_lat =  29.5442	      # <3>
 ```
 
 1. Descriptive name for our target location (change this for different places!)
@@ -500,9 +500,9 @@ Now we'll work with a GEV distribution to create return period plots and compare
 ```{julia}
 # GEV parameters for Houston area (units: inches)
 # Try modifying these values to better fit your data!
-μ = 4.0    # Location parameter - shifts the distribution left/right
-σ = 1.3    # Scale parameter - controls spread (must be > 0)
-ξ = 0.15   # Shape parameter - controls tail behavior
+μ = 2.7    # Location parameter - shifts the distribution left/right
+σ = 1.4    # Scale parameter - controls spread (must be > 0)
+ξ =  0.13   # Shape parameter - controls tail behavior
 
 houston_gev = GeneralizedExtremeValue(μ, σ, ξ)  # <1>
 ```
@@ -609,13 +609,13 @@ Explore the rainfall data to find one station where there *appears* to be a posi
 
 *Write your answer here. Include the station name/ID and explain what you observe in the data that suggests an increasing trend.*
 
-
+While there is around 50 years missing from this station, I would say out of all the stations I checked, this most resembles a positive trend. Station 41-4427, or Dallas WB, resembles a positive trend because the data points in the earlier years are generally lower, and the more recent years show higher annual maximum rainfall values. This upward pattern over time indicates a potential positive trend. 
 
 **Station with apparent negative trend:**
 
 *Write your answer here. Include the station name/ID and explain what you observe in the data that suggests a decreasing trend.*
 
-
+Unfortunately I could not find a station with a clear negative trend. The closest I found was the San Antonio INTL AP (79-0045) station where the annual maximums of rainfall were slightly decreasing. The maximum values of rainfall were generally higher in early years than recent years which indicate a possible negative trend.
 
 ### GEV Parameter Experimentation
 
@@ -624,7 +624,7 @@ Explore the rainfall data to find one station where there *appears* to be a posi
 *Record your starting parameters and the final parameters you chose after experimentation:*
 
 - Starting: $\mu = 4.0$, $\sigma = 1.3$, $\xi = 0.15$
-- Final: $\mu = \ldots$ $\sigma = \ldots$, $\xi = \ldots$
+- Final: $\mu = 2.7$ $\sigma = 1.4$, $\xi = 0.13$
 
 **Parameter Effects:**
 
@@ -632,19 +632,19 @@ Explore the rainfall data to find one station where there *appears* to be a posi
 
 *Test values like $\mu = 2.0, 4.0, 6.0$. Describe how the entire GEV curve shifted and how this affected the fit to your red data points.*
 
-
+Decreasing the $\mu$ changes it so that the curve moves up or down. When I increase $\mu$ , the curve shifts upwards and when I decrease it, the curve shifts downwards. I tried to fit it so that most of the data points fit along the curve. 
 
 **What happened when you increased/decreased $\sigma$ (scale parameter)?**
 
 *Test values like $\sigma = 0.8, 1.3, 2.0$. Describe how the curve became steeper/flatter and how this affected the spread of return levels.*
 
-
+Decreasing $\sigma$ made the curve flatter, causing the return levels to be closer together, while increasing $\sigma$ made the curve steeper and the spread of return levels wider apart. 
 
 **What happened when you changed $\xi$ (shape parameter)?** 
 
 *Test $\xi = -0.1$ (light tail), $\xi = 0.0$ (Gumbel), $\xi = 0.15$, $\xi = 0.3$ (heavy tail). Focus on how the high return period end (right side) of the curve changed.*
 
-
+Decreasing $\xi$ to make it negative made the tail of the curve downwards, while a value of $\xi = 0$ created a straight tail and a higher value made the curve bend upwards, indicating a heavier tail and higher probability of extreme events. 
 
 **Final Assessment:**
 
@@ -652,6 +652,7 @@ Explore the rainfall data to find one station where there *appears* to be a posi
 
 *Do the red dots follow your blue curve? Where are the biggest deviations?*
 
+I think the curve matched the dots pretty well except the return period between 10 and 25 years where the observed data has a dip. The GEV distribution was not able to capture local extremes but I think it captured the overall trend pretty well!
 
 
 **Additional observations:**
